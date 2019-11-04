@@ -81,19 +81,20 @@ module.exports.create = function create({ profile, logger, app, config }) {
 		// Get a version specific observation
 		let Observation = getResourceConstructor(base_version);
 		// Validate the resource type before creating it
-		if (Observation.resourceType !== resource_body.resourceType) {
+		let resource_type = Array.isArray(resource_body) ? resource_body[0].resourceType : resource_body.resourceType;
+		if (Observation.resourceType !== resource_type) {
 			return next(
 				errors.invalidParameter(
 					`'resourceType' expected to have value of '${Observation.resourceType}', received '${
-						resource_body.resourceType
+						resource_type
 					}'`,
 					base_version,
 				),
 			);
 		}
 		// Create a new observation resource and pass it to the service
-		let observation = new Observation(resource_body);
-		let args = { base_version, resource: observation };
+		// let observation = new Observation(resource_body);
+		let args = { base_version, resource: resource_body };
 		// Pass any new information to the underlying service
 		return service
 			.create(args, req.contexts, logger)
