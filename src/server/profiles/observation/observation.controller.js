@@ -134,7 +134,7 @@ module.exports.update = function update({ profile, logger, config }) {
 		}
 		// Create a new observation resource and pass it to the service
 		let observation = new Observation(resource_body);
-		let args = { id, resource: observation };
+		let args = id, base_version, resource: observation };
 		// Pass any new information to the underlying service
 		return service
 			.update(args, req.contexts, logger)
