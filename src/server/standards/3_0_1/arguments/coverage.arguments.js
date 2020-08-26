@@ -67,6 +67,13 @@ module.exports = {
 		definition: 'http://hl7.org/fhir/SearchParameter/Coverage-sequence',
 		description: 'Sequence number',
 	},
+	status: {
+		type: 'token',
+		fhirtype: 'token',
+		xpath: 'Coverage.status',
+		definition: 'http://hl7.org/fhir/SearchParameter/Coverage-status',
+		description: 'The status of the Coverage',
+	},
 	subclass: {
 		type: 'string',
 		fhirtype: 'string',
